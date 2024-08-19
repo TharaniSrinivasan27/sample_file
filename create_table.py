@@ -1,5 +1,5 @@
 import boto3
-import sample_file.config as config  # Import your config file
+import config    # Import your config file
 
 def create_dynamodb_table():
     # Create the DynamoDB service resource using credentials from config.py
@@ -30,7 +30,7 @@ def create_dynamodb_table():
             },
             {
                 'AttributeName': 'mail',
-                'AttributeType': 'N'  # 'S' for string, 'N' for number, 'B' for binary
+                'AttributeType': 'S'  # 'S' for string, 'N' for number, 'B' for binary
             }
         ],
         ProvisionedThroughput={

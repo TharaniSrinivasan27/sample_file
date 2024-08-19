@@ -1,0 +1,35 @@
+service: flask-serverless
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-2
+
+functions:
+  app:
+    handler: wsgi.handler.handler
+
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+          cors: true
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+
+custom:
+  wsgi:
+    app: create_functions.app  # Function to create the Flask app
+    packRequirements: true  # Allow Serverless to package requirements without Docker
+
+  pythonRequirements:
+    dockerizePip: true  # Set to false to avoid using Docker
+
+package:
+  exclude:
+    - node_modules/**
+    - venv/**
+    - tests/**  # Optional: Exclude test folders if not needed
+  

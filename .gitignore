@@ -164,3 +164,12 @@ cython_debug/
 
 #ignore config file
 config.py
+
+#ignore node modules file
+
+node_modules/
+
+# Ignore package-lock.json file
+package-lock.json
+.requirements
+.serverless
